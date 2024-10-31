@@ -17,9 +17,13 @@ CMakeDoxygenDefaults.cmake
 # cland-Ignores
 .cache/
 
+# VSCode-Ignores
+.vscode/
+
 # macOS-Ignores
 .DS_Store
 
 # Project-Ignores
 bin/
 lib/
+log-*.txt
