@@ -4,6 +4,7 @@
 // For use by TankTek applications
 #include <TankTek/Application.hpp>
 #include <TankTek/Logger.hpp>
+#include <TankTek/Window.hpp>
 
 // Entry Point
 #include <TankTek/EntryPoint.hpp>

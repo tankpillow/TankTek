@@ -3,11 +3,20 @@
 
 namespace TankTek
 {
+    class Window;
+
     class Application
     {
+        protected: 
+            Window* window;
         public: // Constructor and Destructor
             Application();
-            ~Application();
+            virtual ~Application() = 0;
+        public: // Callbacks:
+            virtual void onStart() = 0;
+            virtual void onUpdate() = 0;
+            virtual void onRender() = 0;
+            virtual void onStop() = 0;
         public: // Methods
             void run();
     };

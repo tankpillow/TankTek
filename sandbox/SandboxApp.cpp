@@ -3,14 +3,39 @@
 class Sandbox : public TankTek::Application
 {
     public:
-        Sandbox()
+        Sandbox() : TankTek::Application()
         {
             TankTek::Logger::init(false);
-            TankTek::Logger::info("Sandbox Application Started!");
+
+            this->window->setSize(1280, 720);
+            this->window->setTitle("SandboxApp");
+            this->window->setFullscreen(false);
+            this->window->setVsync(true);
         }
 
         ~Sandbox()
         {
+
+        }
+
+        void onStart() override
+        {
+            TankTek::Logger::info("Sandbox Application Started!");
+        }
+
+        void onUpdate() override
+        {
+            
+        }
+
+        void onRender() override
+        {
+            
+        }
+
+        void onStop() override
+        {
+            TankTek::Logger::info("Sandbox Application Stopped!");
         }
 };
 
