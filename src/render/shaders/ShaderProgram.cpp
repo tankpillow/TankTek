@@ -11,6 +11,7 @@ namespace TankTek
 
     ShaderProgram::ShaderProgram(const std::string& vertexShaderFile, const std::string& fragmentShaderFile)
     {
+        TankTek::Logger::info("Loading Shader Program...");
         this->vertexShaderID = loadShader(vertexShaderFile, GL_VERTEX_SHADER);
         this->fragmentShaderID = loadShader(fragmentShaderFile, GL_FRAGMENT_SHADER);
 
@@ -19,7 +20,6 @@ namespace TankTek
         glAttachShader(this->programID, this->fragmentShaderID);
         glLinkProgram(this->programID);
         glValidateProgram(this->programID);
-        this->bindAttributes();
     }
 
     void ShaderProgram::start()
@@ -50,14 +50,16 @@ namespace TankTek
 
     unsigned int ShaderProgram::loadShader(const std::string& filePath, unsigned int type)
     {
+        TankTek::Logger::info("Loading Shader: " + filePath);
         std::ifstream file(filePath);
         if(!file.is_open()) {
             std::stringstream ss;
             ss << "Failed to open file: " << filePath;
             Logger::error(ss.str());
-            return 0;
+            exit(EXIT_FAILURE);
         }
 
+        TankTek::Logger::info("Reading Shader Source...");
         std::string source;
         std::string line;
         while(std::getline(file, line)) {
@@ -66,19 +68,25 @@ namespace TankTek
 
         file.close();
 
+        TankTek::Logger::info("Shader Source: \n" + source);
+
+        TankTek::Logger::info("Compiling Shader...");
         unsigned int shaderID = glCreateShader(type);
+
         const char* src = source.c_str();
         glShaderSource(shaderID, 1, &src, nullptr);
         glCompileShader(shaderID);
-        if(!shaderID) {
-            int length;
-            glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &length);
-            char* message = (char*)alloca(length * sizeof(char));
-            glGetShaderInfoLog(shaderID, length, &length, message);
+
+        TankTek::Logger::info("Checking Shader Compilation...");
+        int success;
+        glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
+        if(!success) {
+            char infoLog[512];
+            glGetShaderInfoLog(shaderID, 512, nullptr, infoLog);
             std::stringstream ss;
-            ss << "Failed to compile shader: " << message;
+            ss << "Failed to compile shader: " << filePath << "\n" << infoLog;
             Logger::error(ss.str());
-            return 0;
+            exit(EXIT_FAILURE);
         }
 
         return shaderID;

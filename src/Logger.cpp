@@ -68,9 +68,7 @@ namespace TankTek
         auto timeT = std::chrono::system_clock::to_time_t(now);
 
         std::stringstream oss;
-        std::tm timeInfo;
-        localtime_s(&timeInfo, &timeT);
-        oss << "log_" << std::put_time(&timeInfo, "%Y-%m-%d_%H-%M-%S") << ".log";
+        oss << "log_" << std::put_time(std::localtime(&timeT), "%Y-%m-%d_%H-%M-%S") << ".txt";
 
         return oss.str();
     }

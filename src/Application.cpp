@@ -15,7 +15,6 @@ namespace TankTek
         this->window = new Window();
         this->renderer = new Renderer();
         this->modelLoader = new ModelLoader();
-        this->shader = new StaticShader();
     }
 
     Application::~Application()
@@ -28,6 +27,8 @@ namespace TankTek
     void Application::run()
     {
         this->window->init();
+
+        this->shader = new StaticShader();
 
         this->onStart();
 
