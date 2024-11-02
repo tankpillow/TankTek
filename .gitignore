@@ -27,3 +27,8 @@ CMakeDoxygenDefaults.cmake
 bin/
 lib/
 log-*.txt
+
+# Ninja-Ignores
+.ninja_deps
+.ninja_log
+build.ninja

@@ -3,18 +3,14 @@
 
 #include <TankTek/TankTek.hpp>
 
-#ifdef __APPLE__
+extern TankTek::Application* TankTek::createApplication();
 
-    extern TankTek::Application* TankTek::createApplication();
-
-    int main(int argc, char* argv[])
-    {
-        auto app = TankTek::createApplication();
-        app->run();
-        delete app;
-        return 0;
-    }
-
-#endif
+int main(int argc, char* argv[])
+{
+    auto app = TankTek::createApplication();
+    app->run();
+    delete app;
+    return 0;
+}
 
 #endif
