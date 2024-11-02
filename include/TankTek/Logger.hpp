@@ -13,9 +13,9 @@ namespace TankTek
         public: // Setup
             static void init(bool logToFile);
         public: // Methods
-            static void info(const char* message);
-            static void warn(const char* message);
-            static void error(const char* message);
+            static void info(const std::string& message);
+            static void warn(const std::string& message);
+            static void error(const std::string& message);
         private: // Utils
             static std::string getFileName();
     };

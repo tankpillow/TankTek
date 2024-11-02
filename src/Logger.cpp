@@ -1,6 +1,7 @@
 #include <TankTek/Logger.hpp>
 
-#include <stdio.h>
+#include <cstdio>
+#include <iomanip>
 #include <chrono>
 #include <fstream>
 #include <sstream>
@@ -22,9 +23,9 @@ namespace TankTek
 
     // Methods
     //---------------------------------------------------------------------------------
-    void Logger::info(const char* message)
+    void Logger::info(const std::string& message)
     {
-        printf("[INFO]: %s\n", message);
+        printf("[INFO]: %s\n", message.c_str());
 
         if (Logger::logToFile) {
             std::ofstream file;
@@ -35,9 +36,9 @@ namespace TankTek
 
     }
 
-    void Logger::warn(const char* message)
+    void Logger::warn(const std::string& message)
     {
-        printf("[WARN]: %s\n", message);
+        printf("[WARN]: %s\n", message.c_str());
 
         if (Logger::logToFile) {
             std::ofstream file;
@@ -47,9 +48,9 @@ namespace TankTek
         }
     }
 
-    void Logger::error(const char* message)
+    void Logger::error(const std::string& message)
     {
-        printf("[ERROR]: %s\n", message);
+        printf("[ERROR]: %s\n", message.c_str());
 
         if (Logger::logToFile) {
             std::ofstream file;
@@ -66,10 +67,10 @@ namespace TankTek
         auto now = std::chrono::system_clock::now();
         auto timeT = std::chrono::system_clock::to_time_t(now);
 
-        std::tm localTime = *std::localtime(&timeT);
-
-        std::ostringstream oss;
-        oss << "log-" << std::put_time(&localTime, "%Y-%m-%d-%H-%M-%S") << ".txt";
+        std::stringstream oss;
+        std::tm timeInfo;
+        localtime_s(&timeInfo, &timeT);
+        oss << "log_" << std::put_time(&timeInfo, "%Y-%m-%d_%H-%M-%S") << ".log";
 
         return oss.str();
     }

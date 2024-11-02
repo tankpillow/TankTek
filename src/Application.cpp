@@ -1,6 +1,10 @@
 #include <TankTek/Application.hpp>
 #include <glad/glad.h>
+
 #include <TankTek/Window.hpp>
+#include <TankTek/render/Renderer.hpp>
+#include <TankTek/render/ModelLoader.hpp>
+#include <TankTek/render/shaders/StaticShader.hpp>
 
 namespace TankTek
 {
@@ -9,6 +13,9 @@ namespace TankTek
     Application::Application()
     {
         this->window = new Window();
+        this->renderer = new Renderer();
+        this->modelLoader = new ModelLoader();
+        this->shader = new StaticShader();
     }
 
     Application::~Application()
@@ -25,15 +32,21 @@ namespace TankTek
         this->onStart();
 
         while(!this->window->shouldClose()) {
-            glClearColor(1.0f, 0.0f, 0.0f, 1.0f); 
-            glClear(GL_COLOR_BUFFER_BIT);
+            this->renderer->prepareFrame(); 
 
             this->onUpdate();
+            
+            this->shader->start();
             this->onRender();
+            this->shader->stop();
 
             this->window->swapBuffers();
             this->window->pollEvents();
         }
+
+        this->shader->cleanUp();
+        this->modelLoader->cleanUp();
+
         this->onStop();
     }
 }

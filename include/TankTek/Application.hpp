@@ -4,11 +4,17 @@
 namespace TankTek
 {
     class Window;
+    class Renderer;
+    class ModelLoader;
+    class StaticShader;
 
     class Application
     {
         protected: 
             Window* window;
+            Renderer* renderer;
+            ModelLoader* modelLoader;
+            StaticShader* shader;
         public: // Constructor and Destructor
             Application();
             virtual ~Application() = 0;
