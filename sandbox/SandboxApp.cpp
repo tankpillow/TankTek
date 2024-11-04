@@ -1,11 +1,11 @@
+#include <TankTek/EntryPoint.hpp>
 #include <TankTek/TankTek.hpp>
+#include <sandbox/scenes/DebugScene.hpp>    
 
 #include <vector>
 
 class Sandbox : public TankTek::Application
 {
-    private:
-        TankTek::RawModel* model;
     public:
         Sandbox() : TankTek::Application()
         {
@@ -25,20 +25,7 @@ class Sandbox : public TankTek::Application
         void onStart() override
         {
             TankTek::Logger::info("Sandbox Application Started!");
-
-            std::vector<float> vertices = {
-                -0.5f, 0.5f, 0.0f,
-                -0.5f, -0.5f, 0.0f,
-                0.5f, -0.5f, 0.0f,
-                0.5f, 0.5f, 0.0f,
-            };
-
-            std::vector<unsigned int> indices = {
-                0, 1, 3,
-                3, 1, 2
-            };
-
-            this->model = this->modelLoader->loadToVAO(vertices, indices);
+            this->setScene(new DebugScene());
         }
 
         void onUpdate() override
@@ -48,7 +35,7 @@ class Sandbox : public TankTek::Application
 
         void onRender() override
         {
-            this->renderer->render(this->model);
+            
         }
 
         void onStop() override
@@ -59,5 +46,7 @@ class Sandbox : public TankTek::Application
 
 TankTek::Application* TankTek::createApplication()
 {
-    return new Sandbox();
+    Application* app = new Sandbox();
+    TankTek::Application::instance = app;
+    return app;
 }

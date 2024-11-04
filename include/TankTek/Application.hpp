@@ -7,14 +7,18 @@ namespace TankTek
     class Renderer;
     class ModelLoader;
     class StaticShader;
+    class Scene;
 
     class Application
     {
-        protected: 
+        public:
+            static Application* instance;
+        public: 
             Window* window;
             Renderer* renderer;
             ModelLoader* modelLoader;
             StaticShader* shader;
+            Scene* scene;
         public: // Constructor and Destructor
             Application();
             virtual ~Application() = 0;
@@ -25,6 +29,9 @@ namespace TankTek
             virtual void onStop() = 0;
         public: // Methods
             void run();
+            void setScene(Scene* scene);
+        public:
+            static Application* getInstance();
     };
 
     // This gets defined in the main.

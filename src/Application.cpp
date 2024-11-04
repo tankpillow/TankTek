@@ -4,10 +4,13 @@
 #include <TankTek/Window.hpp>
 #include <TankTek/render/Renderer.hpp>
 #include <TankTek/render/ModelLoader.hpp>
+#include <TankTek/Scene.hpp>
 #include <TankTek/render/shaders/StaticShader.hpp>
 
 namespace TankTek
 {
+    Application* Application::instance = nullptr;
+
     // Constructor and Destructor
     //---------------------------------------------------------------------------------
     Application::Application()
@@ -15,6 +18,8 @@ namespace TankTek
         this->window = new Window();
         this->renderer = new Renderer();
         this->modelLoader = new ModelLoader();
+        this->shader = nullptr;
+        this->scene = nullptr;
     }
 
     Application::~Application()
@@ -36,9 +41,15 @@ namespace TankTek
             this->renderer->prepareFrame(); 
 
             this->onUpdate();
+            if(this->scene != nullptr) {
+                this->scene->onUpdate();
+            }
             
             this->shader->start();
             this->onRender();
+            if(this->scene != nullptr) { 
+                this->scene->onRender();
+            }
             this->shader->stop();
 
             this->window->swapBuffers();
@@ -49,5 +60,24 @@ namespace TankTek
         this->modelLoader->cleanUp();
 
         this->onStop();
+    }
+
+    void Application::setScene(Scene* scene)
+    {
+        if(this->scene != nullptr) {
+            this->scene->onStop();
+        }
+
+        this->scene = scene;
+        
+        this->scene->onStart();
+    }
+
+    Application* Application::getInstance()
+    {
+        if(Application::instance == nullptr) {
+            Application::instance = createApplication();
+        }
+        return Application::instance;
     }
 }

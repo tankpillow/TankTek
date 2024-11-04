@@ -1,7 +1,7 @@
 #ifndef TT_EntryPoint_HPP_
 #define TT_EntryPoint_HPP_
 
-#include <TankTek/TankTek.hpp>
+#include <TankTek/Application.hpp>
 
 extern TankTek::Application* TankTek::createApplication();
 

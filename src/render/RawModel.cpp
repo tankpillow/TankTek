@@ -2,11 +2,8 @@
 
 namespace TankTek
 {
-    RawModel::RawModel(unsigned int vaoID, unsigned int vertexCount)
-    {
-        this->vaoID = vaoID;
-        this->vertexCount = vertexCount;
-    }
+    RawModel::RawModel(unsigned int vaoID, unsigned int vertexCount) : vaoID(vaoID), vertexCount(vertexCount)
+    {}
 
     unsigned int RawModel::getVaoID()
     {
