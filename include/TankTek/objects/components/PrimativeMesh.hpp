@@ -2,6 +2,7 @@
 #define TT_PrimitiveMesh_HPP_
 
 #include <TankTek/objects/Component.hpp>
+#include <TankTek/math/Vec2f.hpp>
 #include <vector>
 
 namespace TankTek
@@ -21,18 +22,23 @@ namespace TankTek
     class PrimitiveMesh : public TankTek::Component
     {
         private:
-            PrimitiveType type;
             std::vector<float> vertices;
             std::vector<unsigned int> indices;
             RawModel* model;
+        private:
+            PrimitiveType type;
+            Vec2f size;
         public:
-            PrimitiveMesh(PrimitiveType type);
+            PrimitiveMesh();
             ~PrimitiveMesh();
         public:
             void onStart() override;
             void onUpdate() override;
             void onRender() override;
             void onStop() override;
+        public:
+            void setType(PrimitiveType type);
+            void setSize(Vec2f size);
         private:
             void createCube();
             void createSphere();

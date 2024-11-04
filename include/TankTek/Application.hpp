@@ -5,7 +5,7 @@ namespace TankTek
 {
     class Window;
     class Renderer;
-    class ModelLoader;
+    class AssetLoader;
     class StaticShader;
     class Scene;
 
@@ -16,7 +16,7 @@ namespace TankTek
         public: 
             Window* window;
             Renderer* renderer;
-            ModelLoader* modelLoader;
+            AssetLoader* assetLoader;
             StaticShader* shader;
             Scene* scene;
         public: // Constructor and Destructor

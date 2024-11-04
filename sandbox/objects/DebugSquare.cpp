@@ -3,7 +3,12 @@
 
 DebugSquare::DebugSquare()
 {
-    this->addComponent(new TankTek::PrimitiveMesh(TankTek::PrimitiveType::QUAD));
+    TankTek::Sprite* sprite = new TankTek::Sprite();
+    TankTek::Texture* texture = TankTek::Application::getInstance()->assetLoader->loadTexture("res/textures/debug.png");
+
+    sprite->setTexture(texture);
+
+    this->addComponent(sprite);
 }
 
 DebugSquare::~DebugSquare()

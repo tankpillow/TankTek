@@ -1,14 +1,16 @@
 #include <TankTek/objects/components/PrimativeMesh.hpp>
 #include <TankTek/Application.hpp>
 #include <TankTek/render/RawModel.hpp>
-#include <TankTek/render/ModelLoader.hpp>
+#include <TankTek/render/AssetLoader.hpp>
 #include <TankTek/render/Renderer.hpp>
 #include <TankTek/Logger.hpp>
 
 namespace TankTek
 {
-    PrimitiveMesh::PrimitiveMesh(PrimitiveType type) : type(type), Component()
-    {}
+    PrimitiveMesh::PrimitiveMesh() : Component()
+    {
+        
+    }
 
     PrimitiveMesh::~PrimitiveMesh()
     {}
@@ -38,7 +40,7 @@ namespace TankTek
         }
 
         TankTek::Logger::info("Creating Primitive Mesh!");
-        this->model = TankTek::Application::getInstance()->modelLoader->loadToVAO(this->vertices, this->indices);
+        // this->model = TankTek::Application::getInstance()->assetLoader->loadToVAO(this->vertices, this->indices);
         TankTek::Logger::info("Primitive Mesh Created!");
     }
 
@@ -52,6 +54,16 @@ namespace TankTek
 
     void PrimitiveMesh::onStop()
     {}
+
+    void PrimitiveMesh::setType(PrimitiveType type)
+    {
+        this->type = type;
+    }
+
+    void PrimitiveMesh::setSize(Vec2f size)
+    {
+        this->size = size;
+    }
 
     void PrimitiveMesh::createCube()
     {
@@ -71,10 +83,10 @@ namespace TankTek
     void PrimitiveMesh::createQuad()
     {
         this->vertices = {
-            -0.5f, 0.5f, 0.0f,
-            -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            0.5f, 0.5f, 0.0f,
+            -this->size.x, this->size.x, 0.0f,
+            -this->size.x, -this->size.x, 0.0f,
+            this->size.x, -this->size.x, 0.0f,
+            this->size.x, this->size.x, 0.0f,
         };
 
         this->indices = {

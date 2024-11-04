@@ -3,7 +3,7 @@
 
 #include <TankTek/Window.hpp>
 #include <TankTek/render/Renderer.hpp>
-#include <TankTek/render/ModelLoader.hpp>
+#include <TankTek/render/AssetLoader.hpp>
 #include <TankTek/Scene.hpp>
 #include <TankTek/render/shaders/StaticShader.hpp>
 
@@ -17,7 +17,7 @@ namespace TankTek
     {
         this->window = new Window();
         this->renderer = new Renderer();
-        this->modelLoader = new ModelLoader();
+        this->assetLoader = new AssetLoader();
         this->shader = nullptr;
         this->scene = nullptr;
     }
@@ -57,7 +57,7 @@ namespace TankTek
         }
 
         this->shader->cleanUp();
-        this->modelLoader->cleanUp();
+        this->assetLoader->cleanUp();
 
         this->onStop();
     }

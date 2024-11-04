@@ -6,18 +6,21 @@
 namespace TankTek
 {
     class RawModel;
+    class Texture;
 
-    class ModelLoader
+    class AssetLoader
     {
         private:
             std::vector<unsigned int> vaos;
             std::vector<unsigned int> vbos;
+            std::vector<unsigned int> textures;
         public:
-            RawModel* loadToVAO(std::vector<float> positions, std::vector<unsigned int> indices);
+            RawModel* loadToVAO(std::vector<float> positions, std::vector<unsigned int> indices, std::vector<float> texCoords);
+            Texture* loadTexture(const std::string& filePath);
             void cleanUp();
         private:
             unsigned int createVAO();
-            void storeDataInAttributeList(int attributeNumber, std::vector<float> data);
+            void storeDataInAttributeList(int attributeNumber, int coordSize, std::vector<float> data);
             void bindIndicesBuffer(std::vector<unsigned int> indices);
             void unbindVAO();
     };
