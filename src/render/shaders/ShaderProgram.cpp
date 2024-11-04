@@ -68,8 +68,6 @@ namespace TankTek
 
         file.close();
 
-        TankTek::Logger::info("Shader Source: \n" + source);
-
         TankTek::Logger::info("Compiling Shader...");
         unsigned int shaderID = glCreateShader(type);
 

@@ -8,6 +8,10 @@
 #include <TankTek/render/Renderer.hpp>
 #include <TankTek/render/ModelLoader.hpp>
 #include <TankTek/render/RawModel.hpp>
+#include <TankTek/render/shaders/ShaderProgram.hpp>
+#include <TankTek/render/shaders/StaticShader.hpp>
+#include <TankTek/input/KeyListener.hpp>
+#include <TankTek/input/MouseListener.hpp>
 
 // Entry Point
 #include <TankTek/EntryPoint.hpp>
