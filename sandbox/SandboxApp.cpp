@@ -2,6 +2,8 @@
 #include <TankTek/TankTek.hpp>
 #include <sandbox/scenes/DebugScene.hpp>    
 
+#include <GLFW/glfw3.h>
+
 #include <vector>
 
 class Sandbox : public TankTek::Application
@@ -30,7 +32,16 @@ class Sandbox : public TankTek::Application
 
         void onUpdate() override
         {
-            
+            if(TankTek::KeyListener::getInstance()->isKeyDown(GLFW_KEY_SPACE)) {
+                TankTek::Logger::info("Space key is down!");
+            }
+
+            if(TankTek::MouseListener::getInstance()->isButtonDown(GLFW_MOUSE_BUTTON_LEFT)) {
+                int x = TankTek::MouseListener::getInstance()->getX();
+                int y = TankTek::MouseListener::getInstance()->getY();
+                TankTek::Logger::info("Mouse is at: " + std::to_string(x) + ", " + std::to_string(y));
+            }
+
         }
 
         void onRender() override

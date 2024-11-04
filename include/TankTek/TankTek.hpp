@@ -14,7 +14,7 @@
 #include <TankTek/objects/GameObject.hpp>
 #include <TankTek/objects/Component.hpp>
 #include <TankTek/objects/components/PrimativeMesh.hpp>
-
-// Entry Point
+#include <TankTek/input/KeyListener.hpp>
+#include <TankTek/input/MouseListener.hpp>
 
 #endif

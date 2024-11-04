@@ -1,5 +1,7 @@
 #include <TankTek/Window.hpp>
 #include <TankTek/Logger.hpp>
+#include <TankTek/input/MouseListener.hpp>
+#include <TankTek/input/KeyListener.hpp>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -73,6 +75,12 @@ namespace TankTek
             exit(EXIT_FAILURE);
             return;
         }
+
+        glfwSetCursorPosCallback(this->window, MouseListener::mousePosCallback);
+        glfwSetMouseButtonCallback(this->window, MouseListener::mouseButtonCallback);
+        glfwSetScrollCallback(this->window, MouseListener::mouseScrollCallback);
+
+        glfwSetKeyCallback(this->window, KeyListener::keyCallback);
 
         glfwMakeContextCurrent(this->window);
 
