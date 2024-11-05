@@ -18,6 +18,10 @@ namespace TankTek
         this->programID = glCreateProgram();
         glAttachShader(this->programID, this->vertexShaderID);
         glAttachShader(this->programID, this->fragmentShaderID);
+    }
+
+    void ShaderProgram::postSetup()
+    {
         glLinkProgram(this->programID);
         glValidateProgram(this->programID);
     }
@@ -46,6 +50,36 @@ namespace TankTek
     void ShaderProgram::bindAttribute(int attribute, const std::string& variableName)
     {
         glBindAttribLocation(this->programID, attribute, variableName.c_str());
+    }
+
+    unsigned int ShaderProgram::getUniformLocation(const std::string& uniformName)
+    {
+        return glGetUniformLocation(this->programID, uniformName.c_str());
+    }
+
+    void ShaderProgram::loadFloat(unsigned int location, float value)
+    {
+        glUniform1f(location, value);
+    }
+
+    void ShaderProgram::loadVector(unsigned int location, const Vector3& vector)
+    {
+        glUniform3f(location, vector.x, vector.y, vector.z);
+    }
+
+    void ShaderProgram::loadBoolean(unsigned int location, bool value)
+    {
+        unsigned int toLoad = 0;
+        if(value) {
+            toLoad = 1;
+        }
+
+        glUniform1i(location, toLoad);
+    }
+
+    void ShaderProgram::loadMatrix(unsigned int location, const Matrix4& matrix)
+    {
+        glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
     }
 
     unsigned int ShaderProgram::loadShader(const std::string& filePath, unsigned int type)

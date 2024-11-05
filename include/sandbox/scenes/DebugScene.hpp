@@ -7,6 +7,7 @@ class DebugScene : public TankTek::Scene
 {
     private:
         TankTek::RawModel* model;
+        TankTek::Camera* camera;
     public:
         DebugScene();
         ~DebugScene();

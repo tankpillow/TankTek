@@ -4,11 +4,15 @@
 namespace TankTek
 {
     class Application; 
-    
+    class StaticShader;
+    class GameObject;
+
     class Component
     {
+        protected:
+            GameObject* gameObject;
         public:
-            Component();
+            Component(GameObject* gameObject);
             virtual ~Component() = 0;
         public:
             virtual void onStart() = 0;

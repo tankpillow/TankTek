@@ -1,5 +1,5 @@
-#ifndef TT_Sprite_HPP_
-#define TT_Sprite_HPP_
+#ifndef TT_MeshCube_HPP_
+#define TT_MeshCube_HPP_
 
 #include <TankTek/objects/Component.hpp>
 
@@ -10,7 +10,7 @@ namespace TankTek
     class RawModel;
     class Texture;
 
-    class Sprite : public Component
+    class MeshCube : public Component
     {
         private: // Utilities
             std::vector<float> vertices;
@@ -20,8 +20,8 @@ namespace TankTek
         public:
             Texture* texture;
         public:
-            Sprite(GameObject* gameObject);
-            ~Sprite();
+            MeshCube(GameObject* gameObject);
+            ~MeshCube();
         public:
             void setTexture(Texture* texture);
         public:

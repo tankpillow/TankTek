@@ -2,6 +2,7 @@
 #define TT_ShaderProgram_HPP_
 
 #include <string>
+#include <TankTek/math/Math.hpp>
 
 namespace TankTek
 {
@@ -13,6 +14,7 @@ namespace TankTek
             unsigned int fragmentShaderID;
         public:
             ShaderProgram(const std::string& vertexShaderFile, const std::string& fragmentShaderFile);
+            void postSetup();
         public:
             void start();
             void stop();
@@ -20,7 +22,14 @@ namespace TankTek
         protected:
             virtual void bindAttributes() = 0;
             void bindAttribute(int attribute, const std::string& variableName);
+        protected:
+            unsigned int getUniformLocation(const std::string& uniformName);
+            void loadFloat(unsigned int location, float value);
+            void loadVector(unsigned int location, const Vector3& vector);
+            void loadBoolean(unsigned int location, bool value);
+            void loadMatrix(unsigned int location, const Matrix4& matrix);
         private:
+            virtual void getAllUniformLocations() = 0;
             static unsigned int loadShader(const std::string& file, unsigned int type);
     };
 }

@@ -5,16 +5,19 @@
 #include <TankTek/Logger.hpp>
 #include <TankTek/objects/Texture.hpp>
 #include <TankTek/Application.hpp>
-#include <TankTek/render/shaders/SpriteShader.hpp>
+#include <TankTek/math/Math.hpp>
+#include <TankTek/objects/GameObject.hpp>
+#include <TankTek/render/shaders/StaticShader.hpp>
 
 #include <glad/glad.h>
 
+#include <sstream>
+
 namespace TankTek
 {
-    Sprite::Sprite() : Component()
+    Sprite::Sprite(GameObject* gameObject) : Component(gameObject)
     {
         this->texture = nullptr;
-        this->shader = new SpriteShader();
     }
 
     Sprite::~Sprite()
@@ -56,24 +59,24 @@ namespace TankTek
 
     void Sprite::onRender()
     {
-        this->shader->start();
-        this->render();
-        this->shader->stop();
-    }
-
-    void Sprite::onStop()
-    {}
-
-    void Sprite::render()
-    {
         glBindVertexArray(this->model->getVaoID());
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+
+        Matrix4 transform = Math::createTransform(this->gameObject->position, this->gameObject->rotation, this->gameObject->scale);
+        TankTek::Application::getInstance()->shader->loadTransformationMatrix(transform);   
+
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, this->texture->getTextureID());
         glDrawElements(GL_TRIANGLES, this->model->getVertexCount(), GL_UNSIGNED_INT, 0);
+
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
         glBindVertexArray(0);
+    }
+
+    void Sprite::onStop()
+    {
+        delete this->model;
     }
 }

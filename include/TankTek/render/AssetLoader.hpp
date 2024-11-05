@@ -2,6 +2,7 @@
 #define TT_ModelLoader_HPP_
 
 #include <vector>
+#include <string>
 
 namespace TankTek
 {

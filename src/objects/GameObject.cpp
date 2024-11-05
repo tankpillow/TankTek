@@ -1,10 +1,18 @@
 #include <TankTek/objects/GameObject.hpp>
 #include <TankTek/objects/Component.hpp>
+#include <TankTek/math/Math.hpp>
+#include <TankTek/render/shaders/StaticShader.hpp>
+#include <TankTek/Application.hpp>
 
 namespace TankTek
 {
     GameObject::GameObject()
-    {}
+    {
+        this->shader = TankTek::Application::getInstance()->shader;
+        this->position = Vector3(0.0f, 0.0f, 0.0f);
+        this->rotation = Vector3(0.0f, 0.0f, 0.0f);
+        this->scale = Vector3(1.0f, 1.0f, 1.0f);
+    }
 
     GameObject::~GameObject()
     {

@@ -38,6 +38,8 @@ namespace TankTek
             double getScrollY();
             bool isDragging();
             bool isButtonDown(int button);
+        public:
+            void setMouseMode(int mode);
     };
 }
 

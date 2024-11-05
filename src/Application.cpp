@@ -4,8 +4,8 @@
 #include <TankTek/Window.hpp>
 #include <TankTek/render/Renderer.hpp>
 #include <TankTek/render/AssetLoader.hpp>
-#include <TankTek/Scene.hpp>
 #include <TankTek/render/shaders/StaticShader.hpp>
+#include <TankTek/Scene.hpp>
 
 namespace TankTek
 {
@@ -56,7 +56,6 @@ namespace TankTek
             this->window->pollEvents();
         }
 
-        this->shader->cleanUp();
         this->assetLoader->cleanUp();
 
         this->onStop();

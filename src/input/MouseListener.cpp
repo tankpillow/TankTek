@@ -112,4 +112,9 @@ namespace TankTek
 
         return false;
     }
+
+    void MouseListener::setMouseMode(int mode)
+    {
+        glfwSetInputMode(glfwGetCurrentContext(), GLFW_CURSOR, mode);
+    }
 }

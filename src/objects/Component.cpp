@@ -3,7 +3,7 @@
 
 namespace TankTek
 {
-    Component::Component()
+    Component::Component(GameObject* gameObject) : gameObject(gameObject)
     {}
 
     Component::~Component()
