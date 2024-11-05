@@ -3,7 +3,7 @@ project(TankTek)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Debug)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -49,3 +49,9 @@ add_executable(Sandbox ${SANDBOX_SOURCES})
 
 target_include_directories(Sandbox PUBLIC "include")
 target_link_libraries(Sandbox ${PROJECT_NAME})
+
+if(WIN32)
+    set(MSVCP140D_DLL "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Redist/MSVC/v142/DebugDLLs/x64/MSVCP140D.dll")
+    install(FILES ${MSVCP140D_DLL} DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+endif()
+

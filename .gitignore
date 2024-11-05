@@ -19,6 +19,7 @@ CMakeDoxygenDefaults.cmake
 
 # VSCode-Ignores
 .vscode/
+build/
 
 # macOS-Ignores
 .DS_Store
@@ -26,6 +27,7 @@ CMakeDoxygenDefaults.cmake
 # Project-Ignores
 bin/
 lib/
+generated/
 log-*.txt
 
 # Ninja-Ignores

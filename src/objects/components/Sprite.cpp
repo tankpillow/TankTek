@@ -59,17 +59,21 @@ namespace TankTek
 
     void Sprite::onRender()
     {
+        // Prepare the model for rendering
         glBindVertexArray(this->model->getVaoID());
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
 
+        // Load the transformation matrix
         Matrix4 transform = Math::createTransform(this->gameObject->position, this->gameObject->rotation, this->gameObject->scale);
         TankTek::Application::getInstance()->shader->loadTransformationMatrix(transform);   
 
+        // Load the texture
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, this->texture->getTextureID());
         glDrawElements(GL_TRIANGLES, this->model->getVertexCount(), GL_UNSIGNED_INT, 0);
 
+        // Clean up
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
         glBindVertexArray(0);
