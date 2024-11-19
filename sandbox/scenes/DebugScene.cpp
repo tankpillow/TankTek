@@ -24,13 +24,9 @@ void DebugScene::onStart()
     // set mouse mode
     TankTek::MouseListener::getInstance()->setMouseMode(GLFW_CURSOR_DISABLED);
 
-    // DebugSquare* square = new DebugSquare();
-    // square->position = TankTek::Vector3(-1.0f, 0.0f, -2.0f);
-
     DebugCube* cube = new DebugCube();
     cube->position = TankTek::Vector3(0.0f, 0.0f, -3.0f);
 
-    // this->addObject(square);
     this->addObject(cube);
 }
 
