@@ -16,6 +16,7 @@ namespace TankTek
             bool fullscreen;
             bool vsync;
         private:
+            bool isRunning;
             GLFWwindow* window;
         public: // Constructor and Destructor
             Window();
@@ -31,6 +32,7 @@ namespace TankTek
             void swapBuffers();
             void pollEvents();
             void destroy();
+            void close();
         
     };
 }

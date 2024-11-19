@@ -15,6 +15,7 @@ namespace TankTek
         this->width = 800;
         this->height = 600;
         this->title = "TankTek";
+        this->isRunning = false;
     }
 
     Window::~Window()
@@ -95,6 +96,7 @@ namespace TankTek
         }
 
         glfwShowWindow(this->window);
+        this->isRunning = true;
     }
 
     bool Window::shouldClose()
@@ -116,6 +118,11 @@ namespace TankTek
     {
         glfwDestroyWindow(this->window);
         glfwTerminate();
+    }
+
+    void Window::close()
+    {
+        this->isRunning = false;
     }
 
 }

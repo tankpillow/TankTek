@@ -6,6 +6,7 @@
 #include <TankTek/render/AssetLoader.hpp>
 #include <TankTek/render/shaders/StaticShader.hpp>
 #include <TankTek/Scene.hpp>
+#include <TankTek/Logger.hpp>
 
 namespace TankTek
 {
@@ -59,6 +60,11 @@ namespace TankTek
         this->assetLoader->cleanUp();
 
         this->onStop();
+    }
+
+    void Application::close()
+    {
+        this->window->close();
     }
 
     void Application::setScene(Scene* scene)

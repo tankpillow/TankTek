@@ -29,6 +29,7 @@ namespace TankTek
             virtual void onStop() = 0;
         public: // Methods
             void run();
+            void close();
             void setScene(Scene* scene);
         public:
             static Application* getInstance();

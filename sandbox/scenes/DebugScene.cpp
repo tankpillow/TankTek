@@ -34,10 +34,6 @@ void DebugScene::onUpdate()
 {
     TankTek::Scene::onUpdate();   
 
-    if(TankTek::KeyListener::getInstance()->isKeyDown(GLFW_KEY_ESCAPE)) {
-        TankTek::MouseListener::getInstance()->setMouseMode(GLFW_CURSOR_NORMAL);
-    }
-
     // Move camera based on key input
     if(TankTek::KeyListener::getInstance()->isKeyDown(GLFW_KEY_W)) {
         this->camera->position.z -= 0.1f;
